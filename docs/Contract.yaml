@@ -394,6 +394,9 @@ definitions:
       name:
         type: string
         example: Fundamentos De Programación
+      credits:
+        type: number
+        example: 4
   Course:
     required:
       - studentCode
@@ -460,7 +463,7 @@ definitions:
         example: FDP
 
 # Added by API Auto Mocking Plugin
-host: virtserver.swaggerhub.com
-basePath: /jhoanmanuelms/ProCrear/1.0.0
+host: localhost:8080
+basePath: /procrear
 schemes:
-  - https
+  - http
