@@ -11,3 +11,8 @@ Management system for the ProCrear education institute.
 **Port:** 8082
 
 **Database:** student-service
+
+### Course Service
+**Port:** 8083
+
+**Database:** course-service

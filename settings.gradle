@@ -4,5 +4,6 @@ pluginManagement {
 	}
 }
 rootProject.name = 'procrear'
-include 'subject-service'
+include 'course-service'
 include 'student-service'
+include 'subject-service'

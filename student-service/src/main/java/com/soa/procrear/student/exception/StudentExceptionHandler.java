@@ -19,4 +19,9 @@ public class StudentExceptionHandler extends ResponseEntityExceptionHandler {
     public void notEnoughCredits(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.PRECONDITION_FAILED.value());
     }
+
+    @ExceptionHandler(StudentAlreadyExistingException.class)
+    public void studentAlreadyExists(HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.CONFLICT.value());
+    }
 }

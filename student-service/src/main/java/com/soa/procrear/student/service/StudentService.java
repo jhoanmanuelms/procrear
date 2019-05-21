@@ -1,6 +1,7 @@
 package com.soa.procrear.student.service;
 
 import com.soa.procrear.student.exception.NotEnoughCreditsException;
+import com.soa.procrear.student.exception.StudentAlreadyExistingException;
 import com.soa.procrear.student.exception.StudentNotFoundException;
 import com.soa.procrear.student.model.Student;
 import com.soa.procrear.student.repository.StudentRepository;
@@ -13,7 +14,11 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public Student save(Student student) {
+    public Student save(Student student) throws StudentAlreadyExistingException {
+        if (studentRepository.countByCode(student.getCode()) > 0) {
+            throw new StudentAlreadyExistingException();
+        }
+
         return studentRepository.save(student);
     }
 

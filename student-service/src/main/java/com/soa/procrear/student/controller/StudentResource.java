@@ -1,6 +1,7 @@
 package com.soa.procrear.student.controller;
 
 import com.soa.procrear.student.exception.NotEnoughCreditsException;
+import com.soa.procrear.student.exception.StudentAlreadyExistingException;
 import com.soa.procrear.student.exception.StudentNotFoundException;
 import com.soa.procrear.student.model.Student;
 import com.soa.procrear.student.service.StudentService;
@@ -18,7 +19,7 @@ public class StudentResource {
     private StudentService studentService;
 
     @PostMapping("/student")
-    public Student register(@RequestBody Student student) {
+    public Student register(@RequestBody Student student) throws StudentAlreadyExistingException {
         return studentService.save(student);
     }
 
