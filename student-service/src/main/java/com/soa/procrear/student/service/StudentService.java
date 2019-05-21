@@ -13,6 +13,10 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
+    public Student save(Student student) {
+        return studentRepository.save(student);
+    }
+
     public Student getStudentByCode(Integer code) throws StudentNotFoundException {
         Student student = studentRepository.findByCode(code);
 
