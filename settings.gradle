@@ -4,6 +4,11 @@ pluginManagement {
 	}
 }
 rootProject.name = 'procrear'
+
+// Entity Layer
 include 'course-service'
 include 'student-service'
 include 'subject-service'
+
+// Utility Layer
+include 'average-service'

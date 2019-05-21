@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: /procrear
+  port: 8084
