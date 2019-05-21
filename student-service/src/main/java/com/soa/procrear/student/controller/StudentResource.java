@@ -18,15 +18,12 @@ public class StudentResource {
 
     @GetMapping("/student/{code}")
     public Student getStudentByCode(@PathVariable Integer code) throws StudentNotFoundException {
-        // TODO move the exception to the service
-        return studentService.getStudentByCode(code).orElseThrow(StudentNotFoundException::new);
+        return studentService.getStudentByCode(code);
     }
 
     @GetMapping("/student/{code}/credits")
     public Integer getStudentCredits(@PathVariable Integer code) throws StudentNotFoundException {
-        Student student = studentService.getStudentByCode(code).orElseThrow(StudentNotFoundException::new);
-
-        return student.getAvailableCredits();
+        return studentService.getStudentByCode(code).getAvailableCredits();
     }
 
     @PostMapping("/student/{code}/credits/expend/{toExpend}")

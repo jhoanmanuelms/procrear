@@ -13,13 +13,19 @@ public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public Optional<Student> getStudentByCode(Integer code) {
-        return Optional.ofNullable(studentRepository.findByCode(code));
+    public Student getStudentByCode(Integer code) throws StudentNotFoundException {
+        Student student = studentRepository.findByCode(code);
+
+        if (student == null) {
+            throw new StudentNotFoundException();
+        }
+
+        return student;
     }
 
     public Integer expendCredits(Integer code, Integer toExpend)
     throws StudentNotFoundException, NotEnoughCreditsException {
-        Student student = getStudentByCode(code).orElseThrow(StudentNotFoundException::new);
+        Student student = getStudentByCode(code);
         Integer availableCredits = student.getAvailableCredits();
         Integer balance = availableCredits - toExpend;
 
