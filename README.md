@@ -20,3 +20,6 @@ Management system for the ProCrear education institute.
 ## Utility Layer
 ### Subject Service
 **Port:** 8084
+
+### Subject Service
+**Port:** 8085
