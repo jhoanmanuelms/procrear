@@ -11,33 +11,33 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 
 tags:
-  - name: "Student"
-  - name: "Subject"
-  - name: "Course"
-  - name: "Average"
-  - name: "Print"
-  - name: "Grades"
-  - name: "Certificates"
-  - name: "Registration"
+- name: "Student"
+- name: "Subject"
+- name: "Course"
+- name: "Average"
+- name: "Print"
+- name: "Grades"
+- name: "Certificates"
+- name: "Registration"
 
 paths:
   /student:
     post:
       tags:
-        - Student
+      - Student
       summary: Registers a new student
       operationId: registerStudent
       description: Registers a new student
       consumes:
-        - application/json
+      - application/json
       produces:
-        - application/json
+      - application/json
       parameters:
-        - in: body
-          name: student
-          description: The student to register
-          schema:
-            $ref: '#/definitions/Student'
+      - in: body
+        name: student
+        description: The student to register
+        schema:
+          $ref: '#/definitions/Student'
       responses:
         201:
           description: Student created
@@ -45,21 +45,22 @@ paths:
           description: Invalid input, object invalid
         409:
           description: The given student already exists
+
   /student/{code}:
     get:
       tags:
-        - Student
+      - Student
       summary: Get a student information
       operationId: getStudent
       description: Retrieves the information for the student with the given code
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: code
-          in: path
-          description: student code
-          required: true
-          type: number
+      - name: code
+        in: path
+        description: student code
+        required: true
+        type: number
       responses:
         200:
           description: student was found
@@ -67,64 +68,63 @@ paths:
             $ref: '#/definitions/Student'
         404:
           description: student not found
+
   /student/{code}/credits:
     get:
       tags:
-        - Student
+      - Student
       summary: Get the available credits for a student
       operationId: getStudentCredits
       description: Retrieves the number of credits available for the student with the given code
       produces:
-        - number
+      - number
       parameters:
-        - name: code
-          in: path
-          description: student code
-          required: true
-          type: number
+      - name: code
+        in: path
+        description: student code
+        required: true
+        type: number
       responses:
         200:
-          description: student was found
-          schema:
-            type: number
+          description: student available credits
         404:
           description: student not found
+
   /student/{code}/credits/expend/{toExpend}:
     post:
       tags:
-        - Student
+      - Student
       summary: reduces the given number of credits for the student
       operationId: expendStudentCredits
       description: Reduces the given number of credits for the student
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: code
-          in: path
-          description: student code
-          required: true
-          type: number
-        - name: toExpend
-          in: path
-          description: number of credits to be expent
-          required: true
-          type: number
+      - name: code
+        in: path
+        description: student code
+        required: true
+        type: number
+      - name: toExpend
+        in: path
+        description: number of credits to be expent
+        required: true
+        type: number
       responses:
         200:
-          description: student was found
-          schema:
-            type: number
+          description: new amount of credits available for the student
         404:
           description: student not found
+
   /subject:
     get:
       tags:
-        - Subject
+      - Subject
       summary: Gets the subjects registered in the system
       operationId: getSubjects
       description: Gets the subjects registered in the system
       produces:
-        - application/json
+      - application/json
       responses:
         200:
           description: subjects list
@@ -132,21 +132,22 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Subject'
+
   /subject/{code}:
     get:
       tags:
-        - Subject
+      - Subject
       summary: Gets the information for the subject with the given code
       operationId: getSubject
       description: Gets the information for the subject with the given code
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: code
-          in: path
-          description: student code
-          required: true
-          type: number
+      - name: code
+        in: path
+        description: student code
+        required: true
+        type: number
       responses:
         200:
           description: subject was found
@@ -154,23 +155,24 @@ paths:
             $ref: '#/definitions/Subject'
         404:
           description: subject not found
+
   /course:
     post:
       tags:
-        - Course
+      - Course
       summary: Register a student in a course
       operationId: registerCourse
       description: Register a student in a course
       consumes:
-        - application/json
+      - application/json
       produces:
-        - application/json
+      - application/json
       parameters:
-        - in: body
-          name: course
-          description: The information of the student to register and the corresponding course
-          schema:
-            $ref: '#/definitions/Course'
+      - in: body
+        name: course
+        description: The information of the student to register and the corresponding course
+        schema:
+          $ref: '#/definitions/Course'
       responses:
         201:
           description: the student was registered in the course
@@ -180,21 +182,22 @@ paths:
           description: Invalid input, object invalid
         409:
           description: the given course already exists
+
   /course/student/{studentCode}:
     get:
       tags:
-        - Course
+      - Course
       summary: Gets the courses registered for the given student
       operationId: getStudentCourses
       description: Gets the courses registered for the given student
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: studentCode
-          in: path
-          description: student code
-          required: true
-          type: number
+      - name: studentCode
+        in: path
+        description: student code
+        required: true
+        type: number
       responses:
         200:
           description: courses for student were found
@@ -204,59 +207,58 @@ paths:
               $ref: '#/definitions/Course'
         404:
           description: student isn't registered in any course
+
   /course/grades/student/{studentCode}/subject/{subjectCode}:
     get:
       tags:
-        - Course
+      - Course
       summary: Gets the grade for the given student in the given course
       operationId: getStudentGrades
       description: Gets the grade for the given student in the given course
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: studentCode
-          in: path
-          description: student code
-          required: true
-          type: number
-        - name: subjectCode
-          in: path
-          description: subject code
-          required: true
-          type: string
+      - name: studentCode
+        in: path
+        description: student code
+        required: true
+        type: number
+      - name: subjectCode
+        in: path
+        description: subject code
+        required: true
+        type: string
       responses:
         200:
-          description: grade for student was found
-          schema:
-            type: number
+          description: grade for the student
         404:
-          description: student isn't registered in any course
+          description: the student isn't registered in any course
     put:
       tags:
-        - Course
+      - Course
       summary: Registers the grade for the given student in the given course
       operationId: postStudentGrades
       description: Registers the grade for the given student in the given course
       consumes:
-        - multipart/form-data
+      - multipart/form-data
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: studentCode
-          in: path
-          description: student code
-          required: true
-          type: number
-        - name: subjectCode
-          in: path
-          description: subject code
-          required: true
-          type: string
-        - name: grade
-          in: formData
-          description: Grade for the given student in the given subject
-          type: number
-          required: true
+      - name: studentCode
+        in: path
+        description: student code
+        required: true
+        type: number
+      - name: subjectCode
+        in: path
+        description: subject code
+        required: true
+        type: string
+      - name: grade
+        in: formData
+        description: Grade for the given student in the given subject
+        type: number
+        required: true
       responses:
         200:
           description: grade was registered
@@ -264,78 +266,78 @@ paths:
             $ref: '#/definitions/Course'
         404:
           description: student isn't registered in any course
+
   /average:
     post:
       tags:
-        - Average
+      - Average
       summary: Calculates the average of the given numbers
       operationId: calculateAverage
       description: Calculates the average of the given numbers
       consumes:
-        - application/json
+      - application/json
       produces:
-        - application/json
+      - application/json
       parameters:
-        - in: body
-          name: average
-          description: Object containing the values to be averaged
-          schema:
-            $ref: '#/definitions/Average'
+      - in: body
+        name: average
+        description: Object containing the values to be averaged
+        schema:
+          $ref: '#/definitions/Average'
       responses:
         201:
           description: average calculated
-          schema:
-            type: number
         400:
           description: Invalid input, object invalid
+
   /print:
     post:
       tags:
-        - Print
+      - Print
       summary: Prints the given document
       operationId: printDocument
       description: Prints the given document
       consumes:
-        - multipart/form-data
+      - multipart/form-data
       produces:
-        - application/json
+      - application/json
       parameters:
-        - in: formData
-          name: document
-          description: Document to be printed
-          type: file
-          required: true
+      - in: formData
+        name: document
+        description: Document to be printed
+        type: file
+        required: true
       responses:
         201:
           description: Document printed
-          schema:
-            type: string
+
   /certificate/student/{studentCode}:
     get:
       tags:
-        - Certificates
+      - Certificates
       summary: Generates the certification for the given student
       operationId: getStudentCertification
       description: Generates the certification for the given student
       produces:
-        - application/json
+      - application/json
       parameters:
-        - name: studentCode
-          in: path
-          description: student code
-          required: true
-          type: number
+      - name: studentCode
+        in: path
+        description: student code
+        required: true
+        type: number
       responses:
         200:
           description: Certification generated
           schema:
             $ref: '#/definitions/Certification'
         404:
-          description: student isn't registered in any course
+          description: the student isn't registered in any course
+
   /registration:
     post:
       tags:
-        - Registration
+      - Registration
       summary: Register the given student in a course for the given subject
       operationId: studentCourseRegistration
       description: |
@@ -343,15 +345,15 @@ paths:
         - Registers the student in the course
         - Expends the credits
       consumes:
-        - application/json
+      - application/json
       produces:
-        - application/json
+      - application/json
       parameters:
-        - in: body
-          name: registration
-          description: The information of the student and subject to perform the registration
-          schema:
-            $ref: '#/definitions/Registration'
+      - in: body
+        name: registration
+        description: The information of the student and subject to perform the registration
+        schema:
+          $ref: '#/definitions/Registration'
       responses:
         201:
           description: The student was registered in the course
@@ -359,14 +361,15 @@ paths:
           description: Invalid input, object invalid
         409:
           description: The student doesn't have the required credits
+
 definitions:
   Student:
     type: object
     required:
-      - code
-      - name
-      - lastName
-      - credits
+    - code
+    - name
+    - lastName
+    - credits
     properties:
       code:
         type: number
@@ -382,8 +385,8 @@ definitions:
         example: 20
   Subject:
     required:
-      - code
-      - name
+    - code
+    - name
     properties:
       id:
         type: number
@@ -399,8 +402,8 @@ definitions:
         example: 4
   Course:
     required:
-      - studentCode
-      - subjectCode
+    - studentCode
+    - subjectCode
     properties:
       studentCode:
         type: number
@@ -413,7 +416,7 @@ definitions:
         example: 4.8
   Average:
     required:
-      - values
+    - values
     properties:
       values:
         type: array
@@ -452,8 +455,8 @@ definitions:
         example: 4.5
   Registration:
     required:
-      - studentCode
-      - subjectCode
+    - studentCode
+    - subjectCode
     properties:
       studentCode:
         type: number

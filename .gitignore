@@ -31,3 +31,6 @@ HELP.md
 
 ### Java ###
 *.class
+
+### MacOs ###
+.DS_Store
