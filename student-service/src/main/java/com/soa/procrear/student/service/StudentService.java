@@ -32,7 +32,7 @@ public class StudentService {
         return student;
     }
 
-    public Integer expendCredits(Integer code, Integer toExpend)
+    public Student expendCredits(Integer code, Integer toExpend)
     throws StudentNotFoundException, NotEnoughCreditsException {
         Student student = getStudentByCode(code);
         Integer availableCredits = student.getAvailableCredits();
@@ -45,6 +45,6 @@ public class StudentService {
         student.setAvailableCredits(balance);
         studentRepository.save(student);
 
-        return balance;
+        return student;
     }
 }

@@ -9,5 +9,5 @@ CREATE TABLE student(
 );
 
 INSERT INTO student(code, name, lastName, availableCredits)
-VALUES (123456, 'Jhoan', 'Munoz', 16),
-       (7891011, 'Jane', 'Doe', 20);
+VALUES (123456, 'Jhoan', 'Munoz', 10),
+       (7891011, 'Jane', 'Doe', 12);

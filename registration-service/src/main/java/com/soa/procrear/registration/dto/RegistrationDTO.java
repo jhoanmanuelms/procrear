@@ -5,6 +5,8 @@ public class RegistrationDTO {
 
     private String subjectCode;
 
+    public Double grade;
+
     public Integer getStudentCode() {
         return studentCode;
     }
@@ -19,5 +21,13 @@ public class RegistrationDTO {
 
     public void setSubjectCode(String subjectCode) {
         this.subjectCode = subjectCode;
+    }
+
+    public Double getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Double grade) {
+        this.grade = grade;
     }
 }

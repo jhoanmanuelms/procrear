@@ -113,6 +113,8 @@ paths:
       responses:
         200:
           description: new amount of credits available for the student
+          schema:
+            $ref: '#/definitions/Student'
         404:
           description: student not found
         409:
@@ -361,7 +363,11 @@ paths:
           description: The student was registered in the course
         400:
           description: Invalid input, object invalid
+        404:
+          description: Either the student or the subject are invalid
         409:
+          description: The student is already registered in the course
+        412:
           description: The student doesn't have the required credits
 
 definitions:

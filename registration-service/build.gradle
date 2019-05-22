@@ -12,6 +12,6 @@ version '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 dependencies {
-    implementation 'org.glassfish.jersey.core:jersey-client:2.28'
+    implementation 'com.mashape.unirest:unirest-java:1.4.9'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 }

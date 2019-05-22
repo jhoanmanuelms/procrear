@@ -34,7 +34,7 @@ public class StudentResource {
     }
 
     @PostMapping("/student/{code}/credits/expend/{toExpend}")
-    public Integer expendStudentCredits(@PathVariable Integer code, @PathVariable Integer toExpend)
+    public Student expendStudentCredits(@PathVariable Integer code, @PathVariable Integer toExpend)
     throws StudentNotFoundException, NotEnoughCreditsException {
         return studentService.expendCredits(code, toExpend);
     }
