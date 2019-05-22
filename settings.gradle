@@ -13,3 +13,6 @@ include 'subject-service'
 // Utility Layer
 include 'average-service'
 include 'print-service'
+
+// Task Layer
+include 'registration-service'

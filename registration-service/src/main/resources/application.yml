@@ -1,0 +1,10 @@
+server:
+  servlet:
+    context-path: /procrear
+  port: 8086
+
+app:
+  serviceInventory:
+    subjectService: http://localhost:8081
+    studentService: http://localhost:8082
+    courseService: http://localhost:8083

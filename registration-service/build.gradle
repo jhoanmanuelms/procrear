@@ -1,0 +1,17 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.soa.procrear'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation 'org.glassfish.jersey.core:jersey-client:2.28'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}

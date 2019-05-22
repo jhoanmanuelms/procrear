@@ -23,3 +23,7 @@ Management system for the ProCrear education institute.
 
 ### Subject Service
 **Port:** 8085
+
+## Task Layer
+### Registration Service
+**Port:** 8086
