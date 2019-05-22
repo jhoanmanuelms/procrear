@@ -42,14 +42,12 @@ public class RegistrationService {
 
     private void registerCourse(RegistrationDTO registrationDTO)
     throws JsonProcessingException, StudentAlreadyRegisteredException, UnirestException {
-        String endpoint = compositionConfig.getCourseService() + "/course";
-        ObjectMapper mapper = new ObjectMapper();
         registrationDTO.setGrade(0.0);
 
         HttpResponse<JsonNode> response =
-            Unirest.post(endpoint)
+            Unirest.post(compositionConfig.getCourseService())
                 .header("Content-type", "application/json")
-                .body(mapper.writeValueAsBytes(registrationDTO)).asJson();
+                .body(new ObjectMapper().writeValueAsBytes(registrationDTO)).asJson();
 
         if (response.getStatus() == HttpStatus.CONFLICT.value()) {
             throw new StudentAlreadyRegisteredException();
@@ -60,18 +58,18 @@ public class RegistrationService {
         Integer studentCode = (Integer)student.getObject().get("code");
         Integer subjectCredits = (Integer)subject.getObject().get("credits");
         String endpoint =
-            compositionConfig.getStudentService() + "/student/" + studentCode + "/credits/expend/" + subjectCredits;
+            compositionConfig.getStudentService() + "/" + studentCode + "/credits/expend/" + subjectCredits;
 
         Unirest.post(endpoint).asJson();
     }
 
     private JsonNode getSubject(String subjectCode) throws InvalidRegistrationException, UnirestException {
-        String endpoint = compositionConfig.getSubjectService() + "/subject/" + subjectCode;
+        String endpoint = compositionConfig.getSubjectService() + "/" + subjectCode;
         return get(endpoint);
     }
 
     private JsonNode getStudent(Integer studentCode) throws InvalidRegistrationException, UnirestException {
-        String endpoint = compositionConfig.getStudentService() + "/student/" + studentCode;
+        String endpoint = compositionConfig.getStudentService() + "/" + studentCode;
         return get(endpoint);
     }
 
