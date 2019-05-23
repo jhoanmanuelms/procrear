@@ -18,12 +18,15 @@ Management system for the ProCrear education institute.
 **Database:** course-service
 
 ## Utility Layer
-### Subject Service
+### Average Service
 **Port:** 8084
 
-### Subject Service
+### Print Service
 **Port:** 8085
 
 ## Task Layer
 ### Registration Service
 **Port:** 8086
+
+### Certification Service
+**Port:** 8087

@@ -1,5 +1,6 @@
 package com.soa.procrear.average.controller;
 
+import com.soa.procrear.average.dto.AverageDTO;
 import com.soa.procrear.average.service.AverageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +13,7 @@ public class AverageResource {
     private AverageService averageService;
 
     @PostMapping("/average")
-    public Double calculateAverage(@RequestBody Double[] values) {
+    public AverageDTO calculateAverage(@RequestBody Double[] values) {
         return averageService.calculateAverage(values);
     }
 }

@@ -1,0 +1,12 @@
+server:
+  servlet:
+    context-path: /procrear
+  port: 8087
+
+app:
+  service-inventory:
+    subject-service: http://localhost:8081/procrear/subject
+    student-service: http://localhost:8082/procrear/student
+    course-service: http://localhost:8083/procrear/course
+    average-service: http://localhost:8084/procrear/average
+    print-service: http://localhost:8085/procrear/print

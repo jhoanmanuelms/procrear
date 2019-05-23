@@ -315,7 +315,7 @@ paths:
         201:
           description: Document printed
 
-  /certificate/student/{studentCode}:
+  /certificate/{studentCode}:
     get:
       tags:
       - Certificates
@@ -431,6 +431,12 @@ definitions:
         items:
           type: number
         example: [ 1, 2, 3 ]
+  AverageResult:
+    required:
+    - average:
+    properties:
+      average:
+        type: number
   CertificateStudent:
     properties:
       code:

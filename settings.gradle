@@ -15,4 +15,5 @@ include 'average-service'
 include 'print-service'
 
 // Task Layer
+include 'certification-service'
 include 'registration-service'
