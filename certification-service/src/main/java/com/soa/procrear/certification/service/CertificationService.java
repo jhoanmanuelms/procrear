@@ -11,14 +11,21 @@ import com.soa.procrear.certification.dto.CertificationDTO;
 import com.soa.procrear.certification.dto.CourseDTO;
 import com.soa.procrear.certification.dto.StudentDTO;
 import com.soa.procrear.certification.exception.CourseNotFoundException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.http.entity.ContentType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
 @Service
 public class CertificationService {
@@ -30,6 +37,7 @@ public class CertificationService {
         List<CourseDTO> courseDTOs = getCourseDTOs(courses);
         StudentDTO studentDTO = getStudentDTO(studentCode);
         String average = getAverage(courseDTOs);
+        printCertificate();
 
         return new CertificationDTO(studentDTO, courseDTOs, average);
     }
@@ -64,12 +72,24 @@ public class CertificationService {
         JsonNode response =
                 Unirest.post(compositionConfig.getAverageService())
                         .header("Content-type", "application/json")
-                        .body(new ObjectMapper().writeValueAsString(grades)).asJson().getBody();
+                        .body(new ObjectMapper().writeValueAsString(grades))
+                        .asJson()
+                        .getBody();
 
         NumberFormat formatter = NumberFormat.getInstance();
         formatter.setMaximumFractionDigits(1);
 
         return formatter.format(response.getObject().get("average"));
+    }
+
+    private void printCertificate() throws IOException, UnirestException {
+        // TODO Let's pretend the certificate was generated
+        File certificate = ResourceUtils.getFile("classpath:Certificate.pdf");
+        InputStream toPrint = Files.newInputStream(certificate.toPath());
+
+        Unirest.post(compositionConfig.getPrintService())
+                .field("document", toPrint, ContentType.APPLICATION_OCTET_STREAM, "Certificate.pdf")
+                .asString();
     }
 
     private JsonNode getCourses(Integer studentCode) throws CourseNotFoundException, UnirestException {
